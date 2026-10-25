@@ -61,6 +61,32 @@ public static void calculateSalary() {
     System.debug('Annual Salary: ' + annualSalary);
     System.debug('Incentive: ' + incentive);
     System.debug('Final Annual Salary: ' + finalAnnualSalary);
-
 }
+
+    public static void calculatePerformanceBonus() {
+
+        Decimal basicSalary = 50000;
+        Integer performanceRating = 3;
+        Decimal bonus;
+
+        if(performanceRating < 1 || performanceRating > 5){
+            System.debug('Invalid performance rating');
+            return;
+        }
+
+        // Write your if-else-if logic here
+        if(performanceRating == 5) {
+            bonus = basicSalary * 0.20;
+        }else if(performanceRating == 4){
+            bonus = basicSalary * 0.15;
+        }else if(performanceRating == 3){
+            bonus = basicSalary * 0.10;
+        }else {
+            bonus = 0;
+        }
+
+
+        System.debug('Performance Rating: ' + performanceRating);
+        System.debug('Bonus Amount: ' + bonus);
+    }
 }
