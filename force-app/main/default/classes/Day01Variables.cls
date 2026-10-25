@@ -8,7 +8,7 @@ public with sharing class Day01Variables {
         Integer employeeAge;
         employeeAge = 30;
         Decimal basicSalary;
-        basicSalary = 10000.00;
+        basicSalary = 50000.00;
         Decimal bonusPercentage;
         bonusPercentage = 10.0;
         Boolean isActive;
@@ -17,6 +17,8 @@ public with sharing class Day01Variables {
         bonus = basicSalary * bonusPercentage / 100;
         Decimal totalSalary;
         totalSalary = basicSalary + bonus;
+        Decimal annualSalary = totalSalary * 12;
+
 
         System.debug('Employee Name: ' + employeeName);
         System.debug('Emplyee Age: ' + employeeAge);
@@ -24,5 +26,45 @@ public with sharing class Day01Variables {
         System.debug('Bonus: ' + bonus);
         System.debug('Total Salary: ' + totalSalary);
         System.debug('Is Active: ' + isActive);
+        System.debug('annualSalary: ' + annualSalary);
     }
+
+
+public static void calculateSalary() {
+
+    String employeeName = 'Murali';
+    Decimal basicSalary = 50000;
+    Decimal bonusPercentage = 10;
+
+    // Challenge 1: Calculate monthly bonus
+    Decimal monthlyBonus = 0;
+    monthlyBonus = basicSalary * bonusPercentage / 100;
+
+    // Challenge 2: Calculate total monthly salary
+    Decimal monthlySalary = 0;
+    monthlySalary = basicSalary + monthlyBonus;
+
+    // Challenge 3: Calculate annual salary
+    Decimal annualSalary = 0;
+    annualSalary = monthlySalary * 12;
+
+    // Challenge 4: Check incentive eligibility
+    Decimal incentive = 0;
+    if (annualSalary > 600000) {
+        incentive =  annualSalary + 20000;
+    } else {
+        incentive = 0;
+    }
+    // Challenge 5: Calculate final annual compensation
+    Decimal finalAnnualSalary = 0;
+    finalAnnualSalary = annualSalary + incentive;
+
+    System.debug('Employee: ' + employeeName);
+    System.debug('Monthly Bonus: ' + monthlyBonus);
+    System.debug('Monthly Salary: ' + monthlySalary);
+    System.debug('Annual Salary: ' + annualSalary);
+    System.debug('Incentive: ' + incentive);
+    System.debug('Final Annual Salary: ' + finalAnnualSalary);
+
+}
 }
