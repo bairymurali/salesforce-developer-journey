@@ -1,0 +1,11 @@
+// Day02Loops.practiceForLoop();
+// Day02Loops.calculateAnnualSalaryUsingLoop();
+// Day02Loops.identifyEvenOddNumbers();
+// Day02Loops.identifyEvenOddNumbersAnotherWay();
+// Day02Loops.sumOfEvenAndSumOfOdd();
+// Day02Loops.identifyEvenOddNumbersUsingMod();
+// Day02Loops.printMultiplicationTable();
+// Day02Loops.basicNestedForLoop();
+// Day02Loops.printMultipleTables();
+// Day02Loops.calculateSavingsGoal();
+Day02Loops.simulateATMWithdrawals();

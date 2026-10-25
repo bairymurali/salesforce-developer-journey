@@ -34,7 +34,7 @@ public static void calculateSalary() {
 
     String employeeName = 'Murali';
     Decimal basicSalary = 50000;
-    Decimal bonusPercentage = 10;
+    Decimal bonusPercentage = 10.0;
 
     // Challenge 1: Calculate monthly bonus
     Decimal monthlyBonus = basicSalary * bonusPercentage / 100;
