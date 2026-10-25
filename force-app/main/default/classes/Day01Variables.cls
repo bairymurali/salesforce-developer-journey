@@ -37,27 +37,23 @@ public static void calculateSalary() {
     Decimal bonusPercentage = 10;
 
     // Challenge 1: Calculate monthly bonus
-    Decimal monthlyBonus = 0;
-    monthlyBonus = basicSalary * bonusPercentage / 100;
+    Decimal monthlyBonus = basicSalary * bonusPercentage / 100;
 
     // Challenge 2: Calculate total monthly salary
-    Decimal monthlySalary = 0;
-    monthlySalary = basicSalary + monthlyBonus;
+    Decimal monthlySalary = basicSalary + monthlyBonus;
 
     // Challenge 3: Calculate annual salary
-    Decimal annualSalary = 0;
-    annualSalary = monthlySalary * 12;
+    Decimal annualSalary = monthlySalary * 12;
 
     // Challenge 4: Check incentive eligibility
-    Decimal incentive = 0;
+    Decimal incentive;
     if (annualSalary > 600000) {
-        incentive =  annualSalary + 20000;
+        incentive =  20000;
     } else {
         incentive = 0;
     }
     // Challenge 5: Calculate final annual compensation
-    Decimal finalAnnualSalary = 0;
-    finalAnnualSalary = annualSalary + incentive;
+    Decimal finalAnnualSalary = annualSalary + incentive;
 
     System.debug('Employee: ' + employeeName);
     System.debug('Monthly Bonus: ' + monthlyBonus);
