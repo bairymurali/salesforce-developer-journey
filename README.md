@@ -1,110 +1,92 @@
 # Salesforce Developer Journey 🚀
 
-A hands-on learning repository documenting my progress toward the **Salesforce Platform Developer I (PD1)** certification.
+A hands-on learning repository documenting my progress in **Salesforce Apex development** and preparation for the **Salesforce Platform Developer I (PD1)** certification.
 
-## 🎯 Learning Goal
+## 🎯 Goals
 
-Build practical Salesforce development skills through daily Apex coding exercises and certification-aligned study. The 60-day plan targets exam readiness on **Day 61**.
+- Build strong fundamentals in Apex, SOQL, DML, and Salesforce development.
+- Practice writing clean, readable, bulk-safe Apex code.
+- Learn triggers, asynchronous Apex, testing, and security.
+- Prepare for the Salesforce Platform Developer I certification with a **60-day plan**, aiming to be exam-ready on **Day 61**.
+- Develop JavaScript and Lightning Web Components (LWC) skills alongside Apex.
 
-- **Days 1–45:** Approximately 80% hands-on development and 20% PD1 topic review.
-- **Days 46–60:** Certification revision, scenario questions, timed mock exams, and weak-area practice.
+## 📅 Learning Plan
 
-## 📈 Progress Tracker
+| Days | Focus |
+| --- | --- |
+| 1–15 | Apex fundamentals, collections, SOQL, and JavaScript basics |
+| 16–30 | Triggers, bulkification, testing, and LWC fundamentals |
+| 31–45 | Advanced Apex, security, integration, and hands-on projects |
+| 46–60 | PD1 revision, scenario questions, mock exams, and weak-area review |
+| 61 | Target PD1 exam readiness |
 
-| Day | Topic | Status | Source |
-| --- | --- | --- | --- |
-| 01 | Apex variables, data types, calculations, and conditional logic | ✅ Completed | [Day01Variables.cls](force-app/main/default/classes/Day01Variables.cls) |
-| 02 | Apex loops and practical iteration exercises | ✅ Completed | [Day02Loops.cls](force-app/main/default/classes/Day02Loops.cls) |
-| 03 | Apex collections (List, Set, Map), SOQL and bulkification basics | ✅ Completed — 8 challenges, PD1 quiz 5/5 | `practiceEmployeeList()` through `practiceContactAccountCollections()` (add class link after saving code) |
-| 04 | SOQL in Apex | ⏭️ Next | — |
-| 05–45 | Hands-on Salesforce development and topic-aligned PD1 study | ⬜ Upcoming | — |
-| 46–60 | PD1 revision and mock exams | ⬜ Upcoming | — |
-| 61 | Target exam-readiness day | 🎯 Goal | — |
+**Daily study plan (Days 4–45):** 90 minutes Apex, 60 minutes JavaScript/LWC, and 30 minutes PD1 preparation.
 
-## 📚 Completed Practice
+## ✅ Progress Tracker
 
-### Day 01 — Apex Variables and Conditional Logic
+| Day | Topics | Status |
+| --- | --- | --- |
+| 01 | Apex fundamentals and introductory coding practice | ✅ Completed |
+| 02 | Apex conditions, loops, and practice exercises | ✅ Completed |
+| 03 | Apex collections: `List`, `Set`, `Map`, and Account/Contact examples | ✅ Completed |
+| 04 | Collections, SOQL, grouping Contacts, and aggregate queries | ✅ Completed |
+| 05–45 | Continued Apex and hands-on development | ⏳ Upcoming |
+| 46–60 | Certification-focused revision and mock exams | ⏳ Upcoming |
 
-**File:** [`Day01Variables.cls`](force-app/main/default/classes/Day01Variables.cls)
+## 📘 Day 04 — Collections and SOQL
 
-Topics and exercises:
-- Declaring and assigning `String`, `Integer`, `Decimal`, and `Boolean` variables.
-- Printing values using `System.debug()`.
-- Calculating monthly bonuses, monthly salary, and annual compensation.
-- Applying `if`/`else` logic to incentive eligibility.
-- Applying `if`/`else if`/`else` logic to performance-based bonuses.
-- Validating performance ratings before calculating bonuses.
+**Class:** [`Day04CollectionsAndSOQL.cls`](force-app/main/default/classes/Day04CollectionsAndSOQL.cls)  
+**Anonymous Apex script:** [`day04.apex`](scripts/apex/day04.apex)
 
-**Takeaway:** Practice turning simple business requirements into readable Apex methods with calculations and branching logic.
+Topics practiced:
 
-### Day 02 — Apex Loops
+1. **Technology Accounts:** Query Accounts by Industry, collect unique IDs in a `Set<Id>`, and use a `Map<Id, Account>`.
+2. **Group Contacts by Account:** Use `Map<Id, List<Contact>>` to group Contact records by their Account IDs.
+3. **Count Contacts by Account:** Use `Map<Id, Integer>` and `containsKey()` to count Contacts per Account.
+4. **Aggregate SOQL:** Use `COUNT(Id)`, `GROUP BY`, and `AggregateResult` to retrieve Contact counts directly from Salesforce.
 
-**File:** [`Day02Loops.cls`](force-app/main/default/classes/Day02Loops.cls)
+### Key lessons
 
-Topics and exercises:
-- Basic `for` loops and annual salary accumulation.
-- Counting odd and even numbers, including a `Math.mod()` approach.
-- Summing odd and even numbers from 1 through 100.
-- Printing multiplication tables using simple and nested loops.
-- Basic `while` loops and calculating months needed to reach a savings goal.
-- Basic `do-while` loops and simulating ATM withdrawals with a balance check and `break`.
+- Use `List` for ordered collections, `Set` for unique values, and `Map` for key-value lookups.
+- Avoid unnecessary repeat SOQL queries when records are already available in memory.
+- Avoid SOQL queries inside loops to help stay within governor limits.
+- Use aggregate SOQL when only summary counts are required.
+- Cast values returned by `AggregateResult.get()` to the appropriate Apex types.
 
-**Takeaway:** Choose a loop based on the stopping condition and understand how counters, accumulators, and nested iterations behave.
+**Day 04 practice review:** 38/40 points (**95%**), including a bonus exercise. This is a code-review score, not a certification exam score.
 
-### Day 03 — Apex Collections
-
-**Status:** Completed 8 hands-on challenges; PD1 quiz score **5/5**.
-
-Methods practiced:
-
-1. `practiceEmployeeList()` — create a `List<String>`, add employees, use `size()` and `get()`.
-2. `practiceEmployeeLoop()` — iterate over a List using an enhanced `for` loop and apply conditional logic.
-3. `practiceDepartmentSet()` — use `Set<String>` to store unique department names and iterate through them.
-4. `practiceDepartmentOperations()` — use `contains()`, `remove()`, and `size()`; handle successful and unsuccessful removals.
-5. `practiceEmployeeMap()` — use `Map<Integer, String>` with `put()`, `get()`, `size()`, and `containsKey()`.
-6. `practiceEmployeeMapLoop()` — iterate over Map keys with `keySet()` and retrieve values dynamically.
-7. `practiceAccountMap()` — query Account records into `Map<Id, Account>` and print Account fields.
-8. `practiceContactAccountCollections()` — query Contacts into `List<Contact>`, collect unique `AccountId` values in `Set<Id>`, query related Accounts into `Map<Id, Account>`, and look up Account names.
-
-Salesforce development concepts:
-- Collections: **List, Set, Map** and their common methods.
-- SOQL queries and bind variables such as `WHERE Id IN :accountIds`.
-- Salesforce sObjects: `Account`, `Contact`, and record IDs.
-- **Bulkification fundamentals:** avoid placing SOQL queries inside loops; query related records once and use a Map for lookups.
-- **Defensive coding:** use `containsKey()` or a null check before accessing fields on a Map lookup result that might be missing.
-
-**PD1 assessment:** 5 correct answers out of 5 (100%).
-
-**Takeaway:** Use Lists for ordered records, Sets for unique values/IDs, and Maps for key-based lookups. Combine collections with SOQL to write scalable Apex.
-
-## 🗂️ Repository Layout
+## 🗂️ Repository Structure
 
 ```text
-force-app/
-  main/
-    default/
-      classes/
-        Day01Variables.cls
-        Day01Variables.cls-meta.xml
-        Day02Loops.cls
-        Day02Loops.cls-meta.xml
-        # Add Day 3 Apex class and metadata here when saved
-README.md
+salesforce-developer-journey/
+├── force-app/
+│   └── main/
+│       └── default/
+│           └── classes/
+│               ├── Day04CollectionsAndSOQL.cls
+│               └── Day04CollectionsAndSOQL.cls-meta.xml
+├── scripts/
+│   └── apex/
+│       └── day04.apex
+└── README.md
 ```
 
-This is a Salesforce DX project. Apex classes live in `force-app/main/default/classes/` along with their metadata files.
+*The tree highlights Day 04 files; other Salesforce project files may also be present.*
 
 ## 🛠️ Tools
 
-- Salesforce Apex
-- Salesforce DX project structure
+- Salesforce Developer Org
 - Visual Studio Code
+- Salesforce Extension Pack / Salesforce CLI
 - Git and GitHub
 
-## 🔜 Next Up
+## 🔜 Next Steps
 
-**Day 04: SOQL in Apex** — query Salesforce records, apply filters and sorting, explore relationship queries, and learn governor-limit-safe query patterns.
+- Continue Apex practice from **Day 05**.
+- Practice JavaScript fundamentals in a separate repository: [javascript-practice](https://github.com/bairymurali/javascript-practice).
+- Progress to LWC and Apex integration projects.
+- Review certification topics and measure readiness through timed mock exams.
 
 ---
 
-*This README is updated as new practice is completed. Completion indicates learning and coding practice, not a certification result.*
+*This repository is a learning journal. Examples are written for practice and should be tested and reviewed before production use.*
