@@ -23,7 +23,7 @@ Follow a **60-day learning plan** and be ready for the PD1 exam on **Day 61**.
 | 05 | SOQL relationships: child-to-parent, parent-to-child, and Contact counting | ✅ Completed |
 | 06 | DML operations and bulk processing | ⏳ Planned |
 
-**Current milestone:** Apex Days **1–5 completed**. Day 05 PD1 practice score: **10/10**.
+**Current milestone:** Apex Days **1–5 completed**. PD1 quiz results are tracked by day in the certification section below.
 
 ## 🧑‍💻 Apex exercises by day
 
@@ -154,11 +154,19 @@ The script calls methods in the deployed Apex class. Check the terminal output a
 
 ## 🏆 Certification preparation
 
-PD1 practice questions are aligned with the topics already studied. The Day 05 quiz covered relationship queries, Sets, Maps, governor limits, and Apex loops.
+PD1 practice questions are aligned with the topics already studied. The scorecard below records all verified quiz results so far.
 
-| Quiz | Score |
-| --- | --- |
-| Day 05 | **10/10 (100%)** |
+| Day | Quiz result | Percentage | Notes |
+| --- | --- | --- | --- |
+| Day 01 | Not recorded | — | Apex fundamentals practice |
+| Day 02 | Not recorded | — | Control flow practice |
+| Day 03 | **5/5** | **100%** | Collections and SOQL assessment |
+| Day 04 | **6/10** | **60%** | 3 correct out of 5 questions |
+| Day 05 | **10/10** | **100%** | 5 correct out of 5 questions |
+
+**Verified total:** **21/25 points (84%)** across Days 03–05. Day 01 and Day 02 are excluded because no quiz scores were verified.
+
+**Day 05 quiz topics:** relationship queries, Sets, Maps, governor limits, and Apex loops.
 
 **Next focus:** Day 06 — DML (`insert`, `update`, `delete`, `upsert`) and bulk-processing patterns. Triggers will be introduced later in the learning plan.
 
