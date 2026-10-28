@@ -1,92 +1,181 @@
 # Salesforce Developer Journey 🚀
 
-A hands-on learning repository documenting my progress in **Salesforce Apex development** and preparation for the **Salesforce Platform Developer I (PD1)** certification.
+A hands-on Salesforce development learning repository documenting my progress in **Apex**, **SOQL**, **Salesforce DX**, and preparation for the **Salesforce Platform Developer I (PD1)** certification.
 
-## 🎯 Goals
+## 🎯 Learning goal
 
-- Build strong fundamentals in Apex, SOQL, DML, and Salesforce development.
-- Practice writing clean, readable, bulk-safe Apex code.
-- Learn triggers, asynchronous Apex, testing, and security.
-- Prepare for the Salesforce Platform Developer I certification with a **60-day plan**, aiming to be exam-ready on **Day 61**.
-- Develop JavaScript and Lightning Web Components (LWC) skills alongside Apex.
+Follow a **60-day learning plan** and be ready for the PD1 exam on **Day 61**.
 
-## 📅 Learning Plan
+- **Days 1–45:** Daily hands-on Salesforce development plus topic-aligned PD1 preparation.
+- **Days 46–60:** Certification revision, scenario-based practice, timed mock exams, and review of weak areas.
+- **Daily schedule (Days 4–45):** 90 minutes Apex, 60 minutes JavaScript/LWC preparation, and 30 minutes PD1 practice.
 
-| Days | Focus |
-| --- | --- |
-| 1–15 | Apex fundamentals, collections, SOQL, and JavaScript basics |
-| 16–30 | Triggers, bulkification, testing, and LWC fundamentals |
-| 31–45 | Advanced Apex, security, integration, and hands-on projects |
-| 46–60 | PD1 revision, scenario questions, mock exams, and weak-area review |
-| 61 | Target PD1 exam readiness |
+> JavaScript exercises are maintained separately in the `javascript-practice` repository.
 
-**Daily study plan (Days 4–45):** 90 minutes Apex, 60 minutes JavaScript/LWC, and 30 minutes PD1 preparation.
+## 📈 Progress
 
-## ✅ Progress Tracker
-
-| Day | Topics | Status |
+| Day | Apex topic | Status |
 | --- | --- | --- |
-| 01 | Apex fundamentals and introductory coding practice | ✅ Completed |
-| 02 | Apex conditions, loops, and practice exercises | ✅ Completed |
-| 03 | Apex collections: `List`, `Set`, `Map`, and Account/Contact examples | ✅ Completed |
-| 04 | Collections, SOQL, grouping Contacts, and aggregate queries | ✅ Completed |
-| 05–45 | Continued Apex and hands-on development | ⏳ Upcoming |
-| 46–60 | Certification-focused revision and mock exams | ⏳ Upcoming |
+| 01 | Apex fundamentals: variables, data types, calculations, and conditionals | ✅ Completed |
+| 02 | Control flow: loops, conditions, and practical calculations | ✅ Completed |
+| 03 | Collections: List, Set, Map, and introductory SOQL | ✅ Completed |
+| 04 | Advanced collections, SOQL filtering, grouping, and aggregate queries | ✅ Completed |
+| 05 | SOQL relationships: child-to-parent, parent-to-child, and Contact counting | ✅ Completed |
+| 06 | DML operations and bulk processing | ⏳ Planned |
 
-## 📘 Day 04 — Collections and SOQL
+**Current milestone:** Apex Days **1–5 completed**. Day 05 PD1 practice score: **10/10**.
 
-**Class:** [`Day04CollectionsAndSOQL.cls`](force-app/main/default/classes/Day04CollectionsAndSOQL.cls)  
-**Anonymous Apex script:** [`day04.apex`](scripts/apex/day04.apex)
+## 🧑‍💻 Apex exercises by day
 
-Topics practiced:
+### Day 01 — Variables and fundamentals
 
-1. **Technology Accounts:** Query Accounts by Industry, collect unique IDs in a `Set<Id>`, and use a `Map<Id, Account>`.
-2. **Group Contacts by Account:** Use `Map<Id, List<Contact>>` to group Contact records by their Account IDs.
-3. **Count Contacts by Account:** Use `Map<Id, Integer>` and `containsKey()` to count Contacts per Account.
-4. **Aggregate SOQL:** Use `COUNT(Id)`, `GROUP BY`, and `AggregateResult` to retrieve Contact counts directly from Salesforce.
+**Class:** `Day01Variables.cls`
 
-### Key lessons
+- `practiceVariables()` — Declare and work with Apex variables.
+- `calculateSalary()` — Calculate bonus, monthly salary, annual salary, and incentive.
+- `calculatePerformanceBonus()` — Apply bonus percentages based on performance rating.
 
-- Use `List` for ordered collections, `Set` for unique values, and `Map` for key-value lookups.
-- Avoid unnecessary repeat SOQL queries when records are already available in memory.
-- Avoid SOQL queries inside loops to help stay within governor limits.
-- Use aggregate SOQL when only summary counts are required.
-- Cast values returned by `AggregateResult.get()` to the appropriate Apex types.
+### Day 02 — Loops and control flow
 
-**Day 04 practice review:** 38/40 points (**95%**), including a bonus exercise. This is a code-review score, not a certification exam score.
+**Class:** `Day02Loops.cls`
 
-## 🗂️ Repository Structure
+- `calculateAnnualSalaryUsingLoop()` — Calculate annual salary using a `for` loop.
+- `identifyEvenOddNumbers()` and `identifyEvenOddNumbersAnotherWay()` — Classify even and odd numbers.
+- `sumOfEvenAndSumOfOdd()` — Accumulate totals for even and odd numbers.
+- `printMultiplicationTable()` and `printMultipleTables()` — Generate multiplication tables.
+- `calculateSavingsGoal()` — Use a `while` loop to reach a savings target.
+- `simulateATMWithdrawals()` — Model withdrawals using `do-while` and balance checks.
+
+### Day 03 — Collections and SOQL
+
+**Class:** `Day03Collections.cls`
+
+- Practice creating, reading, and iterating over `List` values.
+- Use `Set` to store unique department names.
+- Use `Map` to associate employee IDs with employee names.
+- Query Account records into `Map<Id, Account>`.
+- Collect Contact `AccountId` values in a `Set<Id>` and retrieve matching Accounts with SOQL.
+
+### Day 04 — Advanced collections and aggregate SOQL
+
+**Class:** Day 04 Apex class in `force-app/main/default/classes/`.
+
+- `getTechnologyAccounts()` — Query Technology Accounts and collect their IDs.
+- `groupContactsByAccount()` — Group Contacts using `Map<Id, List<Contact>>` and count them with `Map<Id, Integer>`.
+- `countContactsUsingAggregate()` — Count Contacts by Account using `AggregateResult`, `COUNT()`, and `GROUP BY`.
+
+### Day 05 — SOQL relationships
+
+**Class:** `Day05Relationships.cls`
+
+- `getContactsWithAccounts()` — Retrieve parent Account fields from Contact using relationship dot notation.
+- `getAccountsWithContacts()` — Retrieve related Contacts with a parent-to-child subquery.
+- `countContactsPerAccount()` — Count related Contacts and calculate an overall total.
+- `findAccountsWithMultipleContacts()` — Identify Accounts having more than two Contacts.
+
+**Day 05 Apex practice review:** 37/40. **Day 05 PD1 quiz:** 10/10.
+
+## 🗂️ Project structure
 
 ```text
 salesforce-developer-journey/
-├── force-app/
-│   └── main/
-│       └── default/
-│           └── classes/
-│               ├── Day04CollectionsAndSOQL.cls
-│               └── Day04CollectionsAndSOQL.cls-meta.xml
-├── scripts/
-│   └── apex/
-│       └── day04.apex
-└── README.md
+├── README.md
+└── salesforce-dx/
+    ├── sfdx-project.json
+    ├── force-app/
+    │   └── main/
+    │       └── default/
+    │           └── classes/
+    │               ├── Day01Variables.cls
+    │               ├── Day02Loops.cls
+    │               ├── Day03Collections.cls
+    │               ├── Day05Relationships.cls
+    │               └── ...
+    └── scripts/
+        └── apex/
+            ├── day01.apex
+            ├── day05.apex
+            └── ...
 ```
 
-*The tree highlights Day 04 files; other Salesforce project files may also be present.*
+> The tree is illustrative. Use the actual class and script filenames in your local checkout; the Day 04 class name and some script names may differ.
 
-## 🛠️ Tools
+## 🛠️ Development tools
 
+- Visual Studio Code with Salesforce extensions
+- Salesforce CLI (`sf`)
 - Salesforce Developer Org
-- Visual Studio Code
-- Salesforce Extension Pack / Salesforce CLI
 - Git and GitHub
+- Java (for Salesforce tooling)
 
-## 🔜 Next Steps
+## ▶️ Running Apex practice
 
-- Continue Apex practice from **Day 05**.
-- Practice JavaScript fundamentals in a separate repository: [javascript-practice](https://github.com/bairymurali/javascript-practice).
-- Progress to LWC and Apex integration projects.
-- Review certification topics and measure readiness through timed mock exams.
+Open a terminal in the Salesforce DX project directory (the folder containing `sfdx-project.json`).
+
+**1. Confirm the connected Salesforce org**
+
+```bash
+sf org list
+```
+
+**2. Deploy updated Apex classes**
+
+```bash
+sf project deploy start --source-dir force-app/main/default/classes --target-org pd1-practice
+```
+
+**3. Execute an anonymous Apex script**
+
+```bash
+sf apex run --file scripts/apex/day05.apex --target-org pd1-practice
+```
+
+Example contents of `scripts/apex/day05.apex`:
+
+```apex
+Day05Relationships.getContactsWithAccounts();
+Day05Relationships.getAccountsWithContacts();
+Day05Relationships.countContactsPerAccount();
+Day05Relationships.findAccountsWithMultipleContacts();
+```
+
+The script calls methods in the deployed Apex class. Check the terminal output and Salesforce debug logs for results. Actual SOQL output depends on records available in the connected org.
+
+## 📚 Key concepts learned
+
+- Apex syntax, variables, numeric calculations, and conditional logic
+- `for`, enhanced `for`, `while`, and `do-while` loops
+- `List`, `Set`, and `Map` collections
+- SOQL filtering and `IN` clauses
+- SOQL aggregate functions and `GROUP BY`
+- Child-to-parent relationship queries (`Account.Name` from Contact)
+- Parent-to-child relationship subqueries (`FROM Contacts` within Account)
+- Avoiding SOQL queries inside loops to reduce governor-limit risks
+
+## 🏆 Certification preparation
+
+PD1 practice questions are aligned with the topics already studied. The Day 05 quiz covered relationship queries, Sets, Maps, governor limits, and Apex loops.
+
+| Quiz | Score |
+| --- | --- |
+| Day 05 | **10/10 (100%)** |
+
+**Next focus:** Day 06 — DML (`insert`, `update`, `delete`, `upsert`) and bulk-processing patterns. Triggers will be introduced later in the learning plan.
+
+## 🔄 Updating the repository
+
+From the repository root:
+
+```bash
+git status
+git add README.md
+git diff --cached --check
+git commit -m "docs: update Apex learning progress through Day 05"
+git push origin main
+```
+
+If the README is inside `salesforce-dx/`, run these commands from that directory or adjust the path passed to `git add`.
 
 ---
 
-*This repository is a learning journal. Examples are written for practice and should be tested and reviewed before production use.*
+*Learning by building, testing, reviewing, and improving Apex code every day.*
