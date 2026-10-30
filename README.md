@@ -1,189 +1,134 @@
-# Salesforce Developer Journey 🚀
+# Salesforce Developer Journey — Apex Day 06
 
-A hands-on Salesforce development learning repository documenting my progress in **Apex**, **SOQL**, **Salesforce DX**, and preparation for the **Salesforce Platform Developer I (PD1)** certification.
+## Topic: SOQL Relationship Queries
 
-## 🎯 Learning goal
+**Learning track:** Salesforce Platform Developer I (PD1)  
+**Day:** 06  
+**Focus:** Parent-to-child and child-to-parent SOQL, related record collections, and query results
 
-Follow a **60-day learning plan** and be ready for the PD1 exam on **Day 61**.
+## Learning Objectives
 
-- **Days 1–45:** Daily hands-on Salesforce development plus topic-aligned PD1 preparation.
-- **Days 46–60:** Certification revision, scenario-based practice, timed mock exams, and review of weak areas.
-- **Daily schedule (Days 4–45):** 90 minutes Apex, 60 minutes JavaScript/LWC preparation, and 30 minutes PD1 practice.
+- Query parent fields from child records using dot notation.
+- Query child records from parent records using a relationship subquery.
+- Iterate through related records in Apex.
+- Handle parent records that have no related child records.
+- Understand how Apex filtering differs from SOQL filtering.
+- Review aggregate queries and `AggregateResult` access.
 
-> JavaScript exercises are maintained separately in the `javascript-practice` repository.
+## 1. Child-to-Parent SOQL: Contact → Account
 
-## 📈 Progress
-
-| Day | Apex topic | Status |
-| --- | --- | --- |
-| 01 | Apex fundamentals: variables, data types, calculations, and conditionals | ✅ Completed |
-| 02 | Control flow: loops, conditions, and practical calculations | ✅ Completed |
-| 03 | Collections: List, Set, Map, and introductory SOQL | ✅ Completed |
-| 04 | Advanced collections, SOQL filtering, grouping, and aggregate queries | ✅ Completed |
-| 05 | SOQL relationships: child-to-parent, parent-to-child, and Contact counting | ✅ Completed |
-| 06 | DML operations and bulk processing | ⏳ Planned |
-
-**Current milestone:** Apex Days **1–5 completed**. PD1 quiz results are tracked by day in the certification section below.
-
-## 🧑‍💻 Apex exercises by day
-
-### Day 01 — Variables and fundamentals
-
-**Class:** `Day01Variables.cls`
-
-- `practiceVariables()` — Declare and work with Apex variables.
-- `calculateSalary()` — Calculate bonus, monthly salary, annual salary, and incentive.
-- `calculatePerformanceBonus()` — Apply bonus percentages based on performance rating.
-
-### Day 02 — Loops and control flow
-
-**Class:** `Day02Loops.cls`
-
-- `calculateAnnualSalaryUsingLoop()` — Calculate annual salary using a `for` loop.
-- `identifyEvenOddNumbers()` and `identifyEvenOddNumbersAnotherWay()` — Classify even and odd numbers.
-- `sumOfEvenAndSumOfOdd()` — Accumulate totals for even and odd numbers.
-- `printMultiplicationTable()` and `printMultipleTables()` — Generate multiplication tables.
-- `calculateSavingsGoal()` — Use a `while` loop to reach a savings target.
-- `simulateATMWithdrawals()` — Model withdrawals using `do-while` and balance checks.
-
-### Day 03 — Collections and SOQL
-
-**Class:** `Day03Collections.cls`
-
-- Practice creating, reading, and iterating over `List` values.
-- Use `Set` to store unique department names.
-- Use `Map` to associate employee IDs with employee names.
-- Query Account records into `Map<Id, Account>`.
-- Collect Contact `AccountId` values in a `Set<Id>` and retrieve matching Accounts with SOQL.
-
-### Day 04 — Advanced collections and aggregate SOQL
-
-**Class:** Day 04 Apex class in `force-app/main/default/classes/`.
-
-- `getTechnologyAccounts()` — Query Technology Accounts and collect their IDs.
-- `groupContactsByAccount()` — Group Contacts using `Map<Id, List<Contact>>` and count them with `Map<Id, Integer>`.
-- `countContactsUsingAggregate()` — Count Contacts by Account using `AggregateResult`, `COUNT()`, and `GROUP BY`.
-
-### Day 05 — SOQL relationships
-
-**Class:** `Day05Relationships.cls`
-
-- `getContactsWithAccounts()` — Retrieve parent Account fields from Contact using relationship dot notation.
-- `getAccountsWithContacts()` — Retrieve related Contacts with a parent-to-child subquery.
-- `countContactsPerAccount()` — Count related Contacts and calculate an overall total.
-- `findAccountsWithMultipleContacts()` — Identify Accounts having more than two Contacts.
-
-**Day 05 Apex practice review:** 37/40. **Day 05 PD1 quiz:** 10/10.
-
-## 🗂️ Project structure
-
-```text
-salesforce-developer-journey/
-├── README.md
-└── salesforce-dx/
-    ├── sfdx-project.json
-    ├── force-app/
-    │   └── main/
-    │       └── default/
-    │           └── classes/
-    │               ├── Day01Variables.cls
-    │               ├── Day02Loops.cls
-    │               ├── Day03Collections.cls
-    │               ├── Day05Relationships.cls
-    │               └── ...
-    └── scripts/
-        └── apex/
-            ├── day01.apex
-            ├── day05.apex
-            └── ...
-```
-
-> The tree is illustrative. Use the actual class and script filenames in your local checkout; the Day 04 class name and some script names may differ.
-
-## 🛠️ Development tools
-
-- Visual Studio Code with Salesforce extensions
-- Salesforce CLI (`sf`)
-- Salesforce Developer Org
-- Git and GitHub
-- Java (for Salesforce tooling)
-
-## ▶️ Running Apex practice
-
-Open a terminal in the Salesforce DX project directory (the folder containing `sfdx-project.json`).
-
-**1. Confirm the connected Salesforce org**
-
-```bash
-sf org list
-```
-
-**2. Deploy updated Apex classes**
-
-```bash
-sf project deploy start --source-dir force-app/main/default/classes --target-org pd1-practice
-```
-
-**3. Execute an anonymous Apex script**
-
-```bash
-sf apex run --file scripts/apex/day05.apex --target-org pd1-practice
-```
-
-Example contents of `scripts/apex/day05.apex`:
+Use the relationship name `Account` to access parent fields from a Contact.
 
 ```apex
-Day05Relationships.getContactsWithAccounts();
-Day05Relationships.getAccountsWithContacts();
-Day05Relationships.countContactsPerAccount();
-Day05Relationships.findAccountsWithMultipleContacts();
+List<Contact> contacts = [
+    SELECT Id, Name, AccountId, Account.Name, Account.Industry
+    FROM Contact
+    WHERE AccountId != null
+    LIMIT 20
+];
+
+for (Contact con : contacts) {
+    System.debug('Contact: ' + con.Name);
+    System.debug('Account: ' + con.Account.Name);
+    System.debug('Industry: ' + con.Account.Industry);
+}
 ```
 
-The script calls methods in the deployed Apex class. Check the terminal output and Salesforce debug logs for results. Actual SOQL output depends on records available in the connected org.
+**Key point:** `AccountId` is the lookup field holding the parent record ID; `Account` is the relationship reference used to access parent fields.
 
-## 📚 Key concepts learned
+## 2. Parent-to-Child SOQL: Account → Contacts
 
-- Apex syntax, variables, numeric calculations, and conditional logic
-- `for`, enhanced `for`, `while`, and `do-while` loops
-- `List`, `Set`, and `Map` collections
-- SOQL filtering and `IN` clauses
-- SOQL aggregate functions and `GROUP BY`
-- Child-to-parent relationship queries (`Account.Name` from Contact)
-- Parent-to-child relationship subqueries (`FROM Contacts` within Account)
-- Avoiding SOQL queries inside loops to reduce governor-limit risks
+Use a nested query and the child relationship name `Contacts`.
 
-## 🏆 Certification preparation
+```apex
+List<Account> accounts = [
+    SELECT Id, Name,
+           (SELECT Id, Name, Email FROM Contacts)
+    FROM Account
+    LIMIT 10
+];
 
-PD1 practice questions are aligned with the topics already studied. The scorecard below records all verified quiz results so far.
+for (Account acc : accounts) {
+    System.debug('Account: ' + acc.Name);
+    System.debug('Contact count: ' + acc.Contacts.size());
 
-| Day | Quiz result | Percentage | Notes |
-| --- | --- | --- | --- |
-| Day 01 | Not recorded | — | Apex fundamentals practice |
-| Day 02 | Not recorded | — | Control flow practice |
-| Day 03 | **5/5** | **100%** | Collections and SOQL assessment |
-| Day 04 | **6/10** | **60%** | 3 correct out of 5 questions |
-| Day 05 | **10/10** | **100%** | 5 correct out of 5 questions |
-
-**Verified total:** **21/25 points (84%)** across Days 03–05. Day 01 and Day 02 are excluded because no quiz scores were verified.
-
-**Day 05 quiz topics:** relationship queries, Sets, Maps, governor limits, and Apex loops.
-
-**Next focus:** Day 06 — DML (`insert`, `update`, `delete`, `upsert`) and bulk-processing patterns. Triggers will be introduced later in the learning plan.
-
-## 🔄 Updating the repository
-
-From the repository root:
-
-```bash
-git status
-git add README.md
-git diff --cached --check
-git commit -m "docs: update Apex learning progress through Day 05"
-git push origin main
+    for (Contact con : acc.Contacts) {
+        System.debug('Contact: ' + con.Name + ' | Email: ' + con.Email);
+    }
+}
 ```
 
-If the README is inside `salesforce-dx/`, run these commands from that directory or adjust the path passed to `git add`.
+**Key point:** When the child relationship has been queried, an Account with no matching Contacts has an empty `Contacts` collection; `.size()` returns `0`.
+
+## 3. Identify Accounts With More Than Two Contacts
+
+The following query retrieves up to 50 Accounts. Apex then identifies those with more than two related Contacts.
+
+```apex
+List<Account> accounts = [
+    SELECT Id, Name,
+           (SELECT Id FROM Contacts)
+    FROM Account
+    LIMIT 50
+];
+
+for (Account acc : accounts) {
+    if (acc.Contacts.size() > 2) {
+        System.debug('Account with more than 2 Contacts: ' + acc.Name);
+    }
+}
+```
+
+**Important:** This code filters **after** the query; the SOQL query itself does not return only Accounts with more than two Contacts. `LIMIT 50` applies to the queried Accounts.
+
+## 4. Aggregate SOQL Review: Count Contacts per Account
+
+Use `GROUP BY` and `COUNT()` to calculate Contact totals directly in SOQL.
+
+```apex
+List<AggregateResult> contactCounts = [
+    SELECT AccountId, COUNT(Id) totalContacts
+    FROM Contact
+    WHERE AccountId != null
+    GROUP BY AccountId
+];
+
+for (AggregateResult result : contactCounts) {
+    Id accountId = (Id) result.get('AccountId');
+    Integer total = (Integer) result.get('totalContacts');
+
+    System.debug('Account ID: ' + accountId);
+    System.debug('Total Contacts: ' + total);
+}
+```
+
+**Key point:** Use `AggregateResult.get('fieldOrAlias')` and cast the returned `Object` to the expected Apex type. This is a review of aggregate querying, not a replacement for the relationship-query exercises.
+
+## Day 06 PD1 Quiz Results
+
+| Question | Topic | Answer | Score |
+|---|---|---|---|
+| Q1 | Parent-to-child SOQL | B | 2/2 |
+| Q2 | Empty child collections | B | 2/2 |
+| Q3 | Child-to-parent SOQL | C | 2/2 |
+| Q4 | `AggregateResult` and casting | B | 2/2 |
+| Q5 | SOQL versus Apex filtering | C | 2/2 |
+| **Total** | | **5/5 correct** | **10/10** |
+
+## Key Takeaways
+
+1. Child-to-parent queries use relationship dot notation, such as `Contact.Account.Name`.
+2. Parent-to-child queries use a nested subquery with the child relationship name, such as `FROM Contacts`.
+3. Queried child relationship collections can be empty without being `null`.
+4. `AggregateResult` values are accessed with `.get()` and explicit casts.
+5. Filtering in Apex after a query is different from applying filters in SOQL.
+
+## Next Learning Goals
+
+- Compare Apex-side filtering with SOQL-side filtering.
+- Practice bulk-safe collection patterns and understand governor limits.
+- Continue scenario-based PD1 questions aligned with completed Apex topics.
 
 ---
 
-*Learning by building, testing, reviewing, and improving Apex code every day.*
+*This README documents Day 06 concepts and quiz results. Adjust class names and file paths to match the actual Apex source files in the repository.*
